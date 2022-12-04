@@ -1,0 +1,28 @@
+{
+  "name": "clicker_game",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TheDaveWave/clicker_game.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TheDaveWave/clicker_game/issues"
+  },
+  "homepage": "https://github.com/TheDaveWave/clicker_game#readme",
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-redux": "^8.0.5",
+    "react-router-dom": "^6.4.4",
+    "react-saga": "^0.3.1",
+    "react-scripts": "^5.0.1",
+    "redux": "^4.2.0"
+  }
+}
