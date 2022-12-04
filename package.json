@@ -1,8 +1,8 @@
 {
   "name": "clicker_game",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "private": "true",
+  "proxy": "http://localhost:5000",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
