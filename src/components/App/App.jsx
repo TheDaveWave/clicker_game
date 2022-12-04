@@ -1,8 +1,9 @@
+import HomePage from "../HomePage/HomePage";
 
 function App() {
   return (
     <div className="App">
-      <h1>This is the app. </h1>
+      <HomePage />
     </div>
   );
 }
