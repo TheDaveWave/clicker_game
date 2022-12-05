@@ -1,10 +1,14 @@
 import { useEffect } from "react";
 import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 function HomePage() {
+  const count = useSelector(store => store.countReducer);
+  const points = useSelector(store => store.pointReducer);
+
+  const dispatch = useDispatch();
+
   const [clicks, setClicks] = useState(0);
-  const [count, setCount] = useState(0);
-  const [points, setPoints] = useState(160);
   const [seconds, setSeconds] = useState(5);
   const [multiplier, setMultiplier] = useState(1);
   const [upgrade, setUpgrade] = useState(false);
@@ -18,31 +22,49 @@ function HomePage() {
 
   const handleClick = () => {
     setClicks(clicks + multiplier);
-    setCount(count + multiplier);
-    // console.log("clicks:", clicks);
-    // since react state is update on the next render
-    // and a point needs to be added every 10 clicks.
-    // we check if the next count is 10 and add a point.
-    // does not work if count is an odd number.
+    dispatch({
+      type: 'Increment_Count',
+      payload: multiplier
+    });
     if (clicks + multiplier >= 10) {
       setClicks(0);
-      setPoints(points + 1);
+      dispatch({
+        type: 'Increment_Points',
+      });
     }
   };
 
   const buyUpgrade = (id) => {
     switch (id) {
       case 1:
-        setPoints(points - 10);
+        if(points < 10) {
+          break;
+        }
+        dispatch({
+          type: "Reduce_Points",
+          payload: 10
+        });
         setUpgrade(true);
         break;
       case 2:
-        setPoints(points - 50);
+        if(points < 50) {
+          break;
+        }
+        dispatch({
+          type: "Reduce_Points",
+          payload: 50
+        });
         setMultiplier(2);
         setUpgradeTwo(true);
         break;
       case 3:
-        setPoints(points - 100);
+        if(points < 100) {
+          break;
+        }
+        dispatch({
+          type: "Reduce_Points",
+          payload: 100
+        });
         setSeconds(4);
         setUpgradeThree(true);
         break;
@@ -54,7 +76,7 @@ function HomePage() {
   const cancelUpgrade = (id) => {
     if (id === 1) {
       console.log("canceled");
-      setPoints(points + 10);
+      // setPoints(points + 10);
       setUpgrade(false);
     }
     return clearInterval(timer);
