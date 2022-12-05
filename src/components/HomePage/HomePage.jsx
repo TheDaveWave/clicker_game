@@ -68,7 +68,7 @@ function HomePage() {
         !timer &&
         setInterval(() => {
           setTimeVal(timeVal + 1);
-        //   console.log(timeVal);
+          // console.log(timeVal);
           if (timeVal === 1000) {
             setTimeVal(0);
             if (time === 1) {
@@ -109,7 +109,7 @@ function HomePage() {
       <div>
         <h4>Upgrades</h4>
         <div>
-          <p>Auto Clicker (Every 5s) | Cost: 10pts</p>
+          <p>Auto Clicker (Every {seconds}s) | Cost: 10pts</p>
           {upgrade ? (
             <button onClick={() => cancelUpgrade(1)}>Stop</button>
           ) : (
