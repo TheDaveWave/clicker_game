@@ -1,5 +1,7 @@
 import { combineReducers } from "redux";
 
+// manipulate the count value, should 
+// just be incremented by action.payload
 const countReducer = (state = 0, action) => {
     switch (action.type) {
         case "Increment_Count":
@@ -9,6 +11,7 @@ const countReducer = (state = 0, action) => {
     }
 }
 
+// manipulate the point values.
 const pointReducer = (state = 0, action) => {
     switch (action.type) {
         case "Increment_Points":
