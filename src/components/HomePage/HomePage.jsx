@@ -3,8 +3,8 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 function HomePage() {
-  const count = useSelector(store => store.countReducer);
-  const points = useSelector(store => store.pointReducer);
+  const count = useSelector((store) => store.countReducer);
+  const points = useSelector((store) => store.pointReducer);
 
   const dispatch = useDispatch();
 
@@ -23,13 +23,13 @@ function HomePage() {
   const handleClick = () => {
     setClicks(clicks + multiplier);
     dispatch({
-      type: 'Increment_Count',
-      payload: multiplier
+      type: "INCREMENT_COUNT",
+      payload: multiplier,
     });
     if (clicks + multiplier >= 10) {
       setClicks(0);
       dispatch({
-        type: 'Increment_Points',
+        type: "INCREMENT_POINTS",
       });
     }
   };
@@ -37,33 +37,33 @@ function HomePage() {
   const buyUpgrade = (id) => {
     switch (id) {
       case 1:
-        if(points < 10) {
+        if (points < 10) {
           break;
         }
         dispatch({
-          type: "Reduce_Points",
-          payload: 10
+          type: "REDUCE_POINTS",
+          payload: 10,
         });
         setUpgrade(true);
         break;
       case 2:
-        if(points < 50) {
+        if (points < 50) {
           break;
         }
         dispatch({
-          type: "Reduce_Points",
-          payload: 50
+          type: "REDUCE_POINTS",
+          payload: 50,
         });
         setMultiplier(2);
         setUpgradeTwo(true);
         break;
       case 3:
-        if(points < 100) {
+        if (points < 100) {
           break;
         }
         dispatch({
-          type: "Reduce_Points",
-          payload: 100
+          type: "REDUCE_POINTS",
+          payload: 100,
         });
         setSeconds(4);
         setUpgradeThree(true);
@@ -82,11 +82,20 @@ function HomePage() {
     return clearInterval(timer);
   };
 
+  // dispatch to count saga to 
+  // run intervalCount
+  const runAutoClicker = () => {
+    dispatch({
+      type: "AUTO_CLICKER",
+      payload: multiplier,
+    });
+  };
+
   const checkInterval = () => {
     if (upgrade) {
       // create timer where every n seconds,
       // count is incremented by 1.
-      timer =
+      /* timer =
         !timer &&
         setInterval(() => {
           setTimeVal(timeVal + 1);
@@ -99,7 +108,7 @@ function HomePage() {
             }
             setTime((prevTime) => prevTime - 1);
           }
-        }, 1);
+        }, 1); */
       // setInterval creates an interval id and this useEffect constructs and
       // then deconstructs the setInterval so it has a different Id everytime.
       // This means that using a loop to clear out multiple intervals may not be possible.
@@ -109,16 +118,16 @@ function HomePage() {
 
   // the interval seems to reset on every click of the click button,
   // or when state is updated.
-  useEffect(() => {
+  /* useEffect(() => {
     // console.log("setting count", count);
     checkInterval();
     // cleanup function to clear the interval.
     // seems to have fixed bug where the setCount in interval was
     // grabbing the wrong instance of the count state.
-    return () => {
-      clearInterval(timer);
-    };
-  });
+    // return () => {
+    //   clearInterval(timer);
+    // };
+  }); */
   // does count and upgrade need to be in the dependencies?
 
   return (
@@ -135,7 +144,8 @@ function HomePage() {
           {upgrade ? (
             <button onClick={() => cancelUpgrade(1)}>Stop</button>
           ) : (
-            <button onClick={() => buyUpgrade(1)}>Buy</button>
+            // <button onClick={() => buyUpgrade(1)}>Buy</button>
+            <button onClick={() => runAutoClicker()}>Buy</button>
           )}
           <p>Click Multiplier (x2) | Cost: 50pts</p>
           {upgradeTwo ? (

@@ -3,7 +3,7 @@ import countSaga from "./count.saga";
 
 function* rootSaga() {
     yield all([
-        countSaga
+        countSaga()
     ]);
 }
 
