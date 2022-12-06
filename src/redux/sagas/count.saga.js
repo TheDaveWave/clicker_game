@@ -16,7 +16,7 @@ function* autoClicker(action) {
   const multiplier = action.payload;
   yield delay(2000);
   yield put({ type: "ADD_CLICK", payload: multiplier});
-  yield put({ type: "AUTO_CLICKER", payload: multiplier });
+  yield put({ type: "AUTO_CLICKER", payload: action.payload });
 }
 
 function* checkClicks(action) {
