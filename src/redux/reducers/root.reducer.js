@@ -23,7 +23,21 @@ const pointReducer = (state = 0, action) => {
     }
 }
 
+const clickReducer = (state = 0, action) => {
+    switch(action.type) {
+        case "GET_CLICKS":
+            return state;
+        case "INCREMENT_CLICKS":
+            return state + action.payload;
+        case "RESET_CLICKS":
+            return 0;
+        default:
+            return state;
+    }
+}
+
 export default combineReducers({
     countReducer,
     pointReducer,
+    clickReducer,
 });
