@@ -2,8 +2,8 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 function HomePage() {
-  const count = useSelector((store) => store.countReducer);
-  const points = useSelector((store) => store.pointReducer);
+  const count = useSelector((store) => store.countReducer.count);
+  const points = useSelector((store) => store.countReducer.points);
 
   const dispatch = useDispatch();
 
