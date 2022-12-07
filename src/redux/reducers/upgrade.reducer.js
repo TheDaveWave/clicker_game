@@ -1,9 +1,40 @@
-import { combineReducers } from "redux";
 
-const upgrades = (state = {}, action) => {
+const upgradeList = {
+    autoClicker: {
+        id: 1,
+        bought: false,
+        cost: 10,
+    },
+    multiplier: {
+        id: 2,
+        bought: false,
+        cost: 50,
+        value: 1,
+    },
+}
+
+const upgrades = (state = upgradeList, action) => {
     switch (action.type) {
         case "GET_UPGRADES":
             return state;    
+        case "BUY_AUTO_CLICKER":
+            return {
+                ...state,
+                autoClicker: {
+                    bought: action.payload                    
+                }
+            };
+        case "BUY_MULTIPLIER":
+            let newState = {...state};
+            return {
+                ...state,
+                multiplier: {
+                    id: action.payload.id,
+                    bought: action.payload.bought,
+                    value: newState.multiplier.value * 2,
+                    cost: Math.round(newState.multiplier.cost * 1.5),
+                }
+            };
         default:
             return state;
     }

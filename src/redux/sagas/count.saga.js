@@ -10,22 +10,22 @@ function* countSaga() {
 
 // used to check how many clicks there are and
 // updated the store accordingly.
-function* checkClicks(action) {
+function* checkClicks() {
   // access the current state of the store by using the select effect.
   const state = yield select();
   const clicks = state.countReducer.clicks;
-  const multiplier = action.payload;
   // check if clicks * multiplier are greater than or equal to ten
   // if so reset clicks and add a point.
-  if (clicks * multiplier >= 10) {
+  if (clicks >= 10) {
     yield put({ type: "RESET_CLICKS" });
     yield put({ type: "INCREMENT_POINTS" });
   }
 }
 
 // adds a click, count, and then dispatches checkClicks.
-function* addClick(action) {
-  const multiplier = action.payload;
+function* addClick() {
+  const state = yield select();
+  const multiplier = state.upgrades.multiplier.value;
   yield put({ type: "INCREMENT_CLICKS", payload: multiplier });
   yield put({ type: "INCREMENT_COUNT", payload: multiplier });
   yield put({ type: "CHECK_CLICKS", payload: multiplier });
