@@ -21,8 +21,8 @@ function* checkPoints(action) {
     yield put({ type: "BUY_AUTO_CLICKER", payload: true });
     yield put({ type: "AUTO_CLICKER" });
   }
-  if (id === upgrades.multiplier.id && points >= upgrades.multiplier.cost) {
-    yield put({ type: "REDUCE_POINTS", payload: upgrades.multiplier.cost });
+  if (id === upgrades.multiplier.id && points >= upgrades.clickMultiplier.cost) {
+    yield put({ type: "REDUCE_POINTS", payload: upgrades.clickMultiplier.cost });
     yield put({ type: "BUY_MULTIPLIER", payload: { bought: true, id } });
   }
 }
@@ -31,7 +31,7 @@ function* checkPoints(action) {
 // calls add_click every n seconds.
 function* autoClicker() {
   const state = yield select();
-  const multiplier = state.upgrades.multiplier.value;
+  const multiplier = state.upgrades.clickMultiplier.value;
   yield delay(1000);
   yield put({ type: "ADD_CLICK" });
   yield put({ type: "AUTO_CLICKER", payload: multiplier });

@@ -25,7 +25,7 @@ function* checkClicks() {
 // adds a click, count, and then dispatches checkClicks.
 function* addClick() {
   const state = yield select();
-  const multiplier = state.upgrades.multiplier.value;
+  const multiplier = state.upgrades.clickMultiplier.value;
   yield put({ type: "INCREMENT_CLICKS", payload: multiplier });
   yield put({ type: "INCREMENT_COUNT", payload: multiplier });
   yield put({ type: "CHECK_CLICKS", payload: multiplier });

@@ -5,7 +5,7 @@ const upgradeList = {
         bought: false,
         cost: 10,
     },
-    multiplier: {
+    clickMultiplier: {
         id: 2,
         bought: false,
         cost: 50,
@@ -28,11 +28,11 @@ const upgrades = (state = upgradeList, action) => {
             let newState = {...state};
             return {
                 ...state,
-                multiplier: {
+                clickMultiplier: {
                     id: action.payload.id,
                     bought: action.payload.bought,
-                    value: newState.multiplier.value * 2,
-                    cost: Math.round(newState.multiplier.cost * 1.5),
+                    value: newState.clickMultiplier.value * 2,
+                    cost: Math.round(newState.clickMultiplier.cost * 1.5),
                 }
             };
         default:
