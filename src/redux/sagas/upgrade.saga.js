@@ -21,9 +21,15 @@ function* checkPoints(action) {
     yield put({ type: "BUY_AUTO_CLICKER", payload: true });
     yield put({ type: "AUTO_CLICKER" });
   }
-  if (id === upgrades.multiplier.id && points >= upgrades.clickMultiplier.cost) {
-    yield put({ type: "REDUCE_POINTS", payload: upgrades.clickMultiplier.cost });
-    yield put({ type: "BUY_MULTIPLIER", payload: { bought: true, id } });
+  if (
+    id === upgrades.multiplier.id &&
+    points >= upgrades.clickMultiplier.cost
+  ) {
+    yield put({
+      type: "REDUCE_POINTS",
+      payload: upgrades.clickMultiplier.cost,
+    });
+    yield put({ type: "BUY_CLICK_MULTIPLIER", payload: { bought: true, id } });
   }
 }
 
