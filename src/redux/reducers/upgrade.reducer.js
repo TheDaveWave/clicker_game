@@ -36,21 +36,21 @@ const upgrades = (state = upgradeList, action) => {
         clickMultiplier: {
           id: action.payload.id,
           bought: action.payload.bought,
-          value: clickMultState.clickMultiplier.value * 2,
-          cost: Math.round(clickMultState.clickMultiplier.cost * 1.5),
+          value: clickMultState.clickMultiplier.value + 1,
+          cost: Math.round(clickMultState.clickMultiplier.cost * 2),
         },
       };
-      case "BUY_POINT_MULTIPLIER":
-        let pointMultState = {...state};
-        return {
-            ...state,
-            pointMultiplier: {
-                id: action.payload.id,
-                bought: action.payload.bought,
-                value: Math.round(pointMultState.pointMultiplier.value * 1.5),
-                cost: Math.round(pointMultState.pointMultiplier.cost * 1.8),
-            },
-        };
+    case "BUY_POINT_MULTIPLIER":
+      let pointMultState = { ...state };
+      return {
+        ...state,
+        pointMultiplier: {
+          id: action.payload.id,
+          bought: action.payload.bought,
+          value: pointMultState.pointMultiplier.value + 1,
+          cost: Math.round(pointMultState.pointMultiplier.cost * 2.1),
+        },
+      };
     default:
       return state;
   }

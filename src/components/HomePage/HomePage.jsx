@@ -35,11 +35,20 @@ function HomePage() {
           ) : (
             <button onClick={() => buyUpgrade(1)}>Buy</button>
           )}
-          <p>
-            Click Multiplier (x{upgrades.clickMultiplier.value * 2}) | Cost:{" "}
-            {upgrades.clickMultiplier.cost}pts
-          </p>
+          <div>
+            <p>Click Multiplier</p>
+            <p>Current: (x{upgrades.clickMultiplier.value})</p>
+            <p>Next: (x{upgrades.clickMultiplier.value + 1})</p>
+            <p>Cost: {upgrades.clickMultiplier.cost}pts</p>
+          </div>
           <button onClick={() => buyUpgrade(2)}>Buy</button>
+          <div>
+            <p>Point Multiplier</p>
+            <p>Current: (x{upgrades.pointMultiplier.value})</p>
+            <p>Next: (x{upgrades.pointMultiplier.value + 1})</p>
+            <p>Cost: {upgrades.pointMultiplier.cost}pts</p>
+          </div>
+          <button onClick={() => buyUpgrade(3)}>Buy</button>
         </div>
       </div>
     </div>

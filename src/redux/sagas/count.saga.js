@@ -14,11 +14,20 @@ function* checkClicks() {
   // access the current state of the store by using the select effect.
   const state = yield select();
   const clicks = state.countReducer.clicks;
+  const pointMultiplier = state.upgrades.pointMultiplier.value;
   // check if clicks * multiplier are greater than or equal to ten
   // if so reset clicks and add a point.
   if (clicks >= 10) {
+    /* calculate how many points would be made every 10 clicks with the click multiplier.
+    one point per 10 clicks, but click multiplier may be 32 clicks per click.
+    one issue is the remainder. This does not grab the remainder and store it, 
+    and then add it until it equals 10 to add a point. */
+    // console.log("clicks:", clicks);
+    const newPoints = Math.floor(clicks / 10) * pointMultiplier;
+    // console.log("newPoints:", newPoints);
+    // update the pointMultiplier to be the newPoints calculation times the pointMultiplier.
     yield put({ type: "RESET_CLICKS" });
-    yield put({ type: "INCREMENT_POINTS" });
+    yield put({ type: "INCREMENT_POINTS", payload: newPoints });
   }
 }
 
